@@ -1,19 +1,19 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
-var acceptProjectInvite = functions.https.onCall(async (data, context) => {
-    if (context.auth == undefined) {
+const acceptProjectInvite = functions.https.onCall(async (data, context) => {
+    if (context.auth === undefined) {
         return;
     }
 
-    var projectId = data.projectId;
-    var userId = context.auth.uid;
-    var batch = admin.firestore().batch();
+    const projectId = data.projectId;
+    const userId = context.auth.uid;
+    const batch = admin.firestore().batch();
 
     // Check that the user still exists in the projects member collection.
-    var memberRef = admin.firestore().collection(Paths.projects).doc(projectId).collection(Paths.members).doc(userId);
-    var memberDocSnapshot = await memberRef.get();
-    if (memberDocSnapshot.exists == false) {
+    const memberRef = admin.firestore().collection(Paths.projects).doc(projectId).collection(Paths.members).doc(userId);
+    const memberDocSnapshot = await memberRef.get();
+    if (memberDocSnapshot.exists === false) {
         return {
             status: 'error',
             message: 'User has been removed from the project, or the project has been deleted'
@@ -22,7 +22,7 @@ var acceptProjectInvite = functions.https.onCall(async (data, context) => {
 
     batch.update(memberRef, { status: 'added' });
 
-    var remoteIdsRef = admin.firestore().collection(Paths.users).doc(userId).collection(Paths.projectIds).doc(projectId);
+    const remoteIdsRef = admin.firestore().collection(Paths.users).doc(userId).collection(Paths.projectIds).doc(projectId);
     batch.set(remoteIdsRef, { ...new RemoteId(projectId) });
 
     try {

@@ -3,16 +3,16 @@ import cleanupTaskListMoveAsync from './cleanupTaskListMoveAsync';
 import completeJobAsync from './completeJobAsync';
 
 async function dispatchJobAsync(snapshot: FirebaseFirestore.DocumentSnapshot, context: functions.EventContext):Promise<void> {
-    var job = snapshot.data();
+    const job = snapshot.data();
 
-    if (job == undefined) {
+    if (job === undefined) {
         return;
     }
 
     // Payload
-    var type = job.type;
-    var payload = job.payload;
-    var jobId = context.params.jobId;
+    const type = job.type;
+    const payload = job.payload;
+    const jobId = context.params.jobId;
 
     // Task List Move.
     if (type === 'CLEANUP_TASKLIST_MOVE') {
@@ -28,7 +28,7 @@ async function dispatchJobAsync(snapshot: FirebaseFirestore.DocumentSnapshot, co
     }
 
     else {
-        throw 'Unrecognized Job Type';
+        throw new Error('Unrecognized Job Type');
     }
 
     return;

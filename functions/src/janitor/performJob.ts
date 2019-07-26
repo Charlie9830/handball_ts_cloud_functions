@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import dispatchJobAsync from './dispatchJobAsync';
 
-var performJob = functions.firestore.document('jobsQueue/{jobId}').onCreate(async (snapshot, context) => {
+const performJob = functions.firestore.document('jobsQueue/{jobId}').onCreate(async (snapshot, context) => {
     try {
         return dispatchJobAsync(snapshot, context);
     }

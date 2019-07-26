@@ -20,21 +20,21 @@ async function cleanupTaskListMoveAsync(payload: any) {
         sourceTaskListRefPath         string (Document Reference Path); 
     */
 
-    var requests: Promise<void>[] = [];
-    var batch = new MultiBatch(admin.firestore());
+    let requests: Promise<void>[] = [];
+    const batch = new MultiBatch(admin.firestore());
 
-    var taskIds: string[] = payload.taskIds;
-    var sourceProjectId = payload.sourceProjectId;
-    var targetProjectId = payload.targetProjectId;
-    var taskListId = payload.taskListId;
-    var sourceTasksRef = admin.firestore().collection(payload.sourceTasksRefPath);
-    var targetTasksRef = admin.firestore().collection(payload.targetTasksRefPath);
-    var sourceTaskListRef = admin.firestore().doc(payload.sourceTaskListRefPath);
+    const taskIds: string[] = payload.taskIds;
+    const sourceProjectId = payload.sourceProjectId;
+    const targetProjectId = payload.targetProjectId;
+    const taskListId = payload.taskListId;
+    const sourceTasksRef = admin.firestore().collection(payload.sourceTasksRefPath);
+    const targetTasksRef = admin.firestore().collection(payload.targetTasksRefPath);
+    const sourceTaskListRef = admin.firestore().doc(payload.sourceTaskListRefPath);
 
-    var completedTaskIds = await copyCompletedTasksToProjectAsync(sourceProjectId, targetProjectId, taskListId, sourceTasksRef, targetTasksRef);
+    const completedTaskIds = await copyCompletedTasksToProjectAsync(sourceProjectId, targetProjectId, taskListId, sourceTasksRef, targetTasksRef);
     // Combine the TaskIds from the Job Payload (Moved by the Client)
     // and the TaskIds returned from copyCompletedTasksToProjectAsync (Copied by Server).
-    var mergedTaskIds = [...taskIds, ...completedTaskIds];
+    const mergedTaskIds = [...taskIds, ...completedTaskIds];
 
     requests = [...requests, ...mergedTaskIds.map(taskId => {
         return moveTaskCommentsAsync(targetTasksRef, sourceTasksRef, taskId, batch);
@@ -52,7 +52,7 @@ async function moveTaskCommentsAsync(targetTasksRef: FirebaseFirestore.Collectio
     sourceTasksRef: FirebaseFirestore.CollectionReference,
     taskId: string,
     batch: MultiBatch): Promise<void> {
-    var snapshot = await sourceTasksRef.doc(taskId).collection(Paths.taskComments).get();
+    const snapshot = await sourceTasksRef.doc(taskId).collection(Paths.taskComments).get();
     if (!snapshot.empty) {
         // Iterate through Comments and add them to the new Location, then delete the Task from the old Location.
         // Another cloud Function will kick in and delete the Task comments from the source location.

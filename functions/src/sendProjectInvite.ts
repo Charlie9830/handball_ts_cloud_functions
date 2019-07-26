@@ -2,25 +2,25 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import parseMemberRole from './utilities/parseMemberRole';
 
-var sendProjectInvite = functions.https.onCall(async (data, context) => {
+const sendProjectInvite = functions.https.onCall(async (data, context) => {
     // Payload
-    var projectName: string = data.projectName;
-    var sourceEmail: string = data.sourceEmail;
-    var sourceDisplayName: string = data.sourceDisplayName;
-    var projectId: string = data.projectId;
-    var targetUserId: string = data.targetUserId;
-    var targetDisplayName: string = data.targetDisplayName;
-    var targetEmail: string = data.targetEmail;
-    var role: MemberRole = parseMemberRole(data.role);
+    const projectName: string = data.projectName;
+    const sourceEmail: string = data.sourceEmail;
+    const sourceDisplayName: string = data.sourceDisplayName;
+    const projectId: string = data.projectId;
+    const targetUserId: string = data.targetUserId;
+    const targetDisplayName: string = data.targetDisplayName;
+    const targetEmail: string = data.targetEmail;
+    const role: MemberRole = parseMemberRole(data.role);
 
-    if (context.auth == undefined) {
-        throw 'context.auth is undefined';
+    if (context.auth === undefined) {
+        throw new Error('context.auth is undefined');
     }
 
-    var sourceUserId: string = context.auth.uid;
+    const sourceUserId: string = context.auth.uid;
 
     // Function.
-    var projectInvite = new ProjectInviteModel(
+    const projectInvite = new ProjectInviteModel(
         projectName,
         targetUserId,
         sourceUserId,
@@ -30,10 +30,10 @@ var sendProjectInvite = functions.https.onCall(async (data, context) => {
         role,
     );
 
-    var inviteRef = admin.firestore().collection(Paths.users).doc(targetUserId).collection(Paths.invites).doc(projectId);
+    const inviteRef = admin.firestore().collection(Paths.users).doc(targetUserId).collection(Paths.invites).doc(projectId);
     try {
         await inviteRef.set({ ...projectInvite });
-        var member = new MemberModel(
+        const member = new MemberModel(
             targetUserId,
             targetDisplayName,
             targetEmail,
@@ -42,7 +42,7 @@ var sendProjectInvite = functions.https.onCall(async (data, context) => {
             []
         );
 
-        var memberRef = admin.firestore().collection(Paths.projects).doc(projectId).collection(Paths.members).doc(targetUserId);
+        const memberRef = admin.firestore().collection(Paths.projects).doc(projectId).collection(Paths.members).doc(targetUserId);
 
         try {
             await memberRef.set({ ...member });
