@@ -1,13 +1,13 @@
 function parseMemberRole(role: String): MemberRole {
-    if (role == 'member') {
+    if (role === 'member') {
         return MemberRole.member;
     }
 
-    if (role == 'owner') {
+    if (role === 'owner') {
         return MemberRole.owner;
     }
 
-    throw 'Failed to parse memberRole';
+    throw new Error('Failed to parse memberRole');
 }
 
 export default parseMemberRole;

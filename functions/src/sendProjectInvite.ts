@@ -1,6 +1,9 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import parseMemberRole from './utilities/parseMemberRole';
+import Paths from './types/FirestorePaths';
+import ProjectInviteModel from './types/ProjectInvite';
+import MemberModel from './types/Member';
 
 const sendProjectInvite = functions.https.onCall(async (data, context) => {
     // Payload

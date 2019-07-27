@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import Paths from './types/FirestorePaths';
 
 const denyProjectInvite = functions.https.onCall(async (data, context) => {
     if (context.auth === undefined) {

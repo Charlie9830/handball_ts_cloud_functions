@@ -10,3 +10,5 @@ class Paths {
     static taskLists: string = 'taskLists';
     static projectIds: string = 'projectIds';
 }
+
+export default Paths;

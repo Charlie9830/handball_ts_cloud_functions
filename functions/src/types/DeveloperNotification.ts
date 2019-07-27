@@ -1,3 +1,6 @@
+import SubscriptionNotification from "./SubscriptionNotification";
+import TestNotification from "./TestNotification";
+
 class DeveloperNotification {
     version: string;
     packageName: string;
@@ -13,3 +16,5 @@ class DeveloperNotification {
         this.testNotification = new TestNotification(json['testNotification'])
     }
 }
+
+export default DeveloperNotification;

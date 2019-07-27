@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
-import MultiBatch from 'firestore-multibatch';
 import copyCompletedTasksToProjectAsync from './copyCompletedTasksToProjectAsync';
+import Paths from '../types/FirestorePaths';
+import MultiBatch from '../MultiBatch';
 
 async function cleanupTaskListMoveAsync(payload: any) {
     /*
@@ -51,7 +52,7 @@ async function cleanupTaskListMoveAsync(payload: any) {
 async function moveTaskCommentsAsync(targetTasksRef: FirebaseFirestore.CollectionReference,
     sourceTasksRef: FirebaseFirestore.CollectionReference,
     taskId: string,
-    batch: MultiBatch): Promise<void> {
+    batch: any): Promise<void> {
     const snapshot = await sourceTasksRef.doc(taskId).collection(Paths.taskComments).get();
     if (!snapshot.empty) {
         // Iterate through Comments and add them to the new Location, then delete the Task from the old Location.

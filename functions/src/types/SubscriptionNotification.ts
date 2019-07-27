@@ -40,3 +40,5 @@ class SubscriptionNotification {
         }
     }
 }
+
+export default SubscriptionNotification;

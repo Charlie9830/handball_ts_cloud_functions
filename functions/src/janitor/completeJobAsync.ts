@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import Paths from '../types/FirestorePaths';
 
 async function completeJobAsync(jobId: string, result: string, error: any):Promise<FirebaseFirestore.WriteResult> {
     if (result === 'success') {

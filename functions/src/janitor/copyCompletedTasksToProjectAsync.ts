@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import MultiBatch from "firestore-multibatch";
+import MultiBatch from '../MultiBatch';
 
 async function copyCompletedTasksToProjectAsync(
     sourceProjectId: string,

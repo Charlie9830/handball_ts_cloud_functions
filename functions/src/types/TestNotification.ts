@@ -5,3 +5,5 @@ class TestNotification {
         this.version = json['version'];
     }
 }
+
+export default TestNotification;

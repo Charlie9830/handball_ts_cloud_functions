@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-
+import Paths from './types/FirestorePaths';
+import DeveloperNotification from './types/DeveloperNotification';
 
 // TOOD: Look at the topic name, it is likely not working, you probably have to manually create a Subscription for Firebase Functions in the GCP console.
 // It will ask for a destination URL. It gives you the URL when you deploy the functions.

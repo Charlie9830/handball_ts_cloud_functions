@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import MultiBatch from 'firestore-multibatch';
+import Paths from './types/FirestorePaths';
+import MultiBatch from './MultiBatch';
 
 const removeTasksOrphanedFromTaskLists = functions.firestore.document('projects/{projectId}/taskLists/{taskListId}').onDelete(async (snapshot, context) => {
     const projectId = context.params.projectId;

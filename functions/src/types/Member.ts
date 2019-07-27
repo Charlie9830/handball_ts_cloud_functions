@@ -9,3 +9,5 @@ class MemberModel {
             this.listCustomSortOrder = listCustomSortOrder || [];
     }
 }
+
+export default MemberModel;

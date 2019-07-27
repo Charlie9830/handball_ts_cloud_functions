@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import MultiBatch from 'firestore-multibatch';
+import Paths from './types/FirestorePaths';
+import MultiBatch from './MultiBatch';
 
 const cleanupProjectDelete = functions.firestore.document('projects/{projectId}').onDelete(async (snapshot, context) => {
     const projectId: string = context.params.projectId;
@@ -20,7 +21,7 @@ const cleanupProjectDelete = functions.firestore.document('projects/{projectId}'
     }
 });
 
-async function removeMembersAndProjectIds(batch: MultiBatch, projectId: string): Promise<void> {
+async function removeMembersAndProjectIds(batch: any, projectId: string): Promise<void> {
     const membersSnapshot = await admin.firestore().collection(Paths.projects).doc(projectId).collection(Paths.members).get();
 
     membersSnapshot.forEach(memberDoc => {
@@ -31,7 +32,7 @@ async function removeMembersAndProjectIds(batch: MultiBatch, projectId: string):
     return;
 }
 
-async function removeCompletedTasksAsync(batch: MultiBatch, projectId: string): Promise<void> {
+async function removeCompletedTasksAsync(batch: any, projectId: string): Promise<void> {
     const completedTasksSnapshot = await admin.firestore().collection(Paths.projects).doc(projectId).collection(Paths.tasks).where('isComplete', '==', true).get();
     completedTasksSnapshot.forEach(doc => {
         batch.delete(doc.ref);

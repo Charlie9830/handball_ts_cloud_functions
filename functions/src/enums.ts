@@ -1,4 +1,4 @@
-enum PlaySubscriptionNotificationType {
+const enum PlaySubscriptionNotificationType {
     Unknown = 0,
     SubscriptionRecovered = 1,
     SubscriptionRenewed = 2,
@@ -13,12 +13,12 @@ enum PlaySubscriptionNotificationType {
     SubscriptionExpired = 13
 }
 
-enum MemberRole {
+const enum MemberRole {
     member = 'member',
     owner = 'owner',
 }
 
-enum MemberStatus {
+const enum MemberStatus {
     pending = 'pending',
     added = 'added',
     denied = 'denied',
