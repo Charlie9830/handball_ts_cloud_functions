@@ -9,7 +9,7 @@ const removeOrphanedTaskComments = functions.firestore.document('projects/{proje
 
     const query = await admin.firestore().collection(Paths.projects).doc(projectId).collection(Paths.tasks).doc(taskId).collection(Paths.taskComments).get();
     
-    if (query.empty) {
+    if (query.empty === true) {
         return;
     }
 

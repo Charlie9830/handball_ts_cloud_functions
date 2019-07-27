@@ -8,20 +8,26 @@ import acceptProjectInvite from './acceptProjectInvite';
 import denyProjectInvite from './denyProjectInvite';
 import cleanupProjectDelete from './cleanupProjectDelete';
 import getRemoteUserData from './getRemoteUserData';
+import removeOrphanedTaskComments from './removeOrphanedTaskComments';
 
 admin.initializeApp({
     credential: admin.credential.applicationDefault(),
 });
 
 
-// exports.stripeUpgradeToPro = require('./stripeUpgradeToPro');
-exports.handlePlaySubcriptionUpdate = handlePlaySubcriptionUpdate;
-exports.sendProjectInvite = sendProjectInvite;
+// Firestore Triggers
 exports.performJob = performJob;
 exports.removeTasksOrphanedFromTaskLists = removeTasksOrphanedFromTaskLists;
-exports.removeOrphanedTaskComments = removeTasksOrphanedFromTaskLists;
+exports.removeOrphanedTaskComments = removeOrphanedTaskComments;
+exports.cleanupProjectDelete = cleanupProjectDelete;
+
+// Callables
+exports.sendProjectInvite = sendProjectInvite;
 exports.kickUserFromProject = kickUserFromProject;
 exports.acceptProjectInvite = acceptProjectInvite;
 exports.denyProjectInvite = denyProjectInvite;
-exports.cleanupProjectDelete = cleanupProjectDelete;
 exports.getRemoteUserData = getRemoteUserData;
+// exports.stripeUpgradeToPro = require('./stripeUpgradeToPro');
+
+// PubSub Triggers
+exports.handlePlaySubcriptionUpdate = handlePlaySubcriptionUpdate;
