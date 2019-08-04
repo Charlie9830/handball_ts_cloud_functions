@@ -9,6 +9,8 @@ import denyProjectInvite from './denyProjectInvite';
 import cleanupProjectDelete from './cleanupProjectDelete';
 import getRemoteUserData from './getRemoteUserData';
 import removeOrphanedTaskComments from './removeOrphanedTaskComments';
+import updateDisplayName from './updateDisplayName';
+import updateEmailAddress from './updateEmailAddress';
 
 admin.initializeApp({
     credential: admin.credential.applicationDefault(),
@@ -27,6 +29,8 @@ exports.kickUserFromProject = kickUserFromProject;
 exports.acceptProjectInvite = acceptProjectInvite;
 exports.denyProjectInvite = denyProjectInvite;
 exports.getRemoteUserData = getRemoteUserData;
+exports.updateDisplayName = updateDisplayName;
+exports.updateEmail = updateEmailAddress;
 // exports.stripeUpgradeToPro = require('./stripeUpgradeToPro');
 
 // PubSub Triggers
