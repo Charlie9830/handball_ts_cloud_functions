@@ -1,5 +1,5 @@
 class RemoteIdModel {
-    constructor(public projectId: string) {};
+    constructor(public uid: string) {};
 }
 
 export default RemoteIdModel;
