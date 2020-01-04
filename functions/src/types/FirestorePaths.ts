@@ -9,6 +9,7 @@ class Paths {
     static tasks: string = 'tasks';
     static taskLists: string = 'taskLists';
     static projectIds: string = 'projectIds';
+    static activityFeed: string = 'activityFeed';
 }
 
 export default Paths;
