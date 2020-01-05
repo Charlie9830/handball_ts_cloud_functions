@@ -22,4 +22,5 @@ const enum MemberStatus {
     pending = 'pending',
     added = 'added',
     denied = 'denied',
+    left = 'left',
 }

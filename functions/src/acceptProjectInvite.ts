@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import Paths from './types/FirestorePaths';
-import RemoteIdModel from './types/RemoteId';
+import ProjectIdModel from './types/ProjectId';
 
 const acceptProjectInvite = functions.https.onCall(async (data, context) => {
     if (context.auth === undefined) {
@@ -25,7 +25,7 @@ const acceptProjectInvite = functions.https.onCall(async (data, context) => {
     batch.update(memberRef, { status: 'added' });
 
     const remoteIdsRef = admin.firestore().collection(Paths.users).doc(userId).collection(Paths.projectIds).doc(projectId);
-    batch.set(remoteIdsRef, { ...new RemoteIdModel(projectId) });
+    batch.set(remoteIdsRef, { ...new ProjectIdModel(projectId) });
 
     try {
         await batch.commit();

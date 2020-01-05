@@ -11,11 +11,14 @@ import getRemoteUserData from './getRemoteUserData';
 import removeOrphanedTaskComments from './removeOrphanedTaskComments';
 import updateDisplayName from './updateDisplayName';
 import updateEmailAddress from './updateEmailAddress';
+import deleteUser from './deleteUser';
 
 admin.initializeApp({
     credential: admin.credential.applicationDefault(),
 });
 
+// Authentication Triggers
+exports.deleteUser = deleteUser;
 
 // Firestore Triggers
 exports.performJob = performJob;

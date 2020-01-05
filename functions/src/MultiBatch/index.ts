@@ -51,7 +51,7 @@ class MultiBatch {
         return this.batches[this.currentBatchIndex].set(documentRef, data, options);
     }
 
-    update(documentRef: FirebaseFirestore.DocumentReference, data: FirebaseFirestore.UpdateData, precondition: FirebaseFirestore.Precondition): FirebaseFirestore.WriteBatch {
+    update(documentRef: FirebaseFirestore.DocumentReference, data: FirebaseFirestore.UpdateData, precondition?: FirebaseFirestore.Precondition): FirebaseFirestore.WriteBatch {
         if (this.isBatchFull()) {
             this.createNewBatch();
         }
