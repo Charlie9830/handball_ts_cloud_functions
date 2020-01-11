@@ -11,6 +11,7 @@ import getRemoteUserData from './getRemoteUserData';
 import removeOrphanedTaskComments from './removeOrphanedTaskComments';
 import deleteUser from './deleteUser';
 import changeDisplayName from './changeDisplayName';
+import changeEmailAddress from './changeEmailAddress';
 
 admin.initializeApp({
     credential: admin.credential.applicationDefault(),
@@ -32,6 +33,7 @@ exports.acceptProjectInvite = acceptProjectInvite;
 exports.denyProjectInvite = denyProjectInvite;
 exports.getRemoteUserData = getRemoteUserData;
 exports.changeDisplayName = changeDisplayName;
+exports.changeEmailAddress = changeEmailAddress;
 // exports.stripeUpgradeToPro = require('./stripeUpgradeToPro');
 
 // PubSub Triggers

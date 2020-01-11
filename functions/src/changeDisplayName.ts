@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import Paths from './types/FirestorePaths';
+import { collectProjectIds } from './utilities/collectProjectIds';
 
 const changeDisplayName = functions.https.onCall(async (data, context) => {
     if (context.auth === undefined) {
@@ -46,15 +47,6 @@ async function updateDisplayNameInAuth(userId: string, desiredDisplayName: strin
     });
 
     return;
-}
-
-async function collectProjectIds(userId: string): Promise<string[]> {
-    const snapshot = await admin.firestore().collection(Paths.users).doc(userId).collection(Paths.projectIds).get();
-    const projectIds: string[] = [];
-
-    snapshot.forEach(doc => projectIds.push(doc.id));
-
-    return projectIds;
 }
 
 async function updateMemberDisplayName(projectId: string, userId: string, newDisplayName: string) {
