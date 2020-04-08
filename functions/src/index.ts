@@ -12,6 +12,7 @@ import removeOrphanedTaskComments from './removeOrphanedTaskComments';
 import deleteUser from './deleteUser';
 import changeDisplayName from './changeDisplayName';
 import changeEmailAddress from './changeEmailAddress';
+import sendAppAndProjectInvite from './sendAppAndProjectInvite';
 
 admin.initializeApp({
     credential: admin.credential.applicationDefault(),
@@ -28,6 +29,7 @@ exports.cleanupProjectDelete = cleanupProjectDelete;
 
 // Callables
 exports.sendProjectInvite = sendProjectInvite;
+exports.sendAppAndProjectInvite = sendAppAndProjectInvite;
 exports.kickUserFromProject = kickUserFromProject;
 exports.acceptProjectInvite = acceptProjectInvite;
 exports.denyProjectInvite = denyProjectInvite;

@@ -66,3 +66,8 @@ node_modules/
 
 # private
 functions/private
+
+# compiled HTML
+Compiled-HTML/
+
+functions/.runtimeconfig.json
