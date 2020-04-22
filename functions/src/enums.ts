@@ -23,4 +23,10 @@ const enum MemberStatus {
     added = 'added',
     denied = 'denied',
     left = 'left',
+    unjoined = 'unjoined',
+}
+
+const enum DynamicLinkType {
+    invalid = "invalid",
+    projectInvite = "projectInvite"
 }

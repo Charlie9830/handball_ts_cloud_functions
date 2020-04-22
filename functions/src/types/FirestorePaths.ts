@@ -11,6 +11,7 @@ class Paths {
     static projectIds: string = 'projectIds';
     static activityFeed: string = 'activityFeed';
     static accountConfig: string = 'accountConfig';
+    static linkingCodes: string = 'linkingCodes';
 }
 
 export default Paths;

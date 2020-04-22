@@ -13,6 +13,8 @@ import deleteUser from './deleteUser';
 import changeDisplayName from './changeDisplayName';
 import changeEmailAddress from './changeEmailAddress';
 import sendAppAndProjectInvite from './sendAppAndProjectInvite';
+import linkAccountToProject from './linkAccountToProject';
+import propagateProjectDeletedFlag from './propagateProjectDeletedFlag';
 
 admin.initializeApp({
     credential: admin.credential.applicationDefault(),
@@ -26,6 +28,7 @@ exports.performJob = performJob;
 exports.removeTasksOrphanedFromTaskLists = removeTasksOrphanedFromTaskLists;
 exports.removeOrphanedTaskComments = removeOrphanedTaskComments;
 exports.cleanupProjectDelete = cleanupProjectDelete;
+exports.propagateProjectDeletedFlag = propagateProjectDeletedFlag;
 
 // Callables
 exports.sendProjectInvite = sendProjectInvite;
@@ -36,7 +39,9 @@ exports.denyProjectInvite = denyProjectInvite;
 exports.getRemoteUserData = getRemoteUserData;
 exports.changeDisplayName = changeDisplayName;
 exports.changeEmailAddress = changeEmailAddress;
+exports.linkAccountToProject = linkAccountToProject;
 // exports.stripeUpgradeToPro = require('./stripeUpgradeToPro');
 
 // PubSub Triggers
 exports.handlePlaySubcriptionUpdate = handlePlaySubcriptionUpdate;
+

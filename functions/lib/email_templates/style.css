@@ -2,17 +2,6 @@ body {
     background-color: white;
 }
 
-h1 {
-    color: rgb(255, 141, 6);
-    font-family: 'Open Sans', 'Lucida Sans', Geneva, Verdana, sans-serif;
-}
-
-h2 {
-    margin-top: 25px;
-    color: rgb(255, 17, 95);
-    font-family: 'Open Sans', 'Lucida Sans', Geneva, Verdana, sans-serif;
-}
-
 a {
     font-family: 'Open Sans', 'Lucida Sans', Geneva, Verdana, sans-serif;
     color: black;

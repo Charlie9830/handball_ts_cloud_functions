@@ -15,6 +15,10 @@ function parseMemberStatus(status: String): MemberStatus {
         return MemberStatus.left;
     }
 
+    if (status === 'unjoined') {
+        return MemberStatus.unjoined;
+    }
+
     throw new Error('Failed to parse memberStatus. Provided value was ' + status || 'null or undefined');
 }
 

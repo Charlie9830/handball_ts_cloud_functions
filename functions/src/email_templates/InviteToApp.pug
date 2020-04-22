@@ -1,6 +1,7 @@
 -// Variables:
 -// sourceDisplayName
 -// projectName
+-// dynamicLink
 
 
 doctype html  
@@ -15,34 +16,8 @@ html(lang='en')
                             
                 tr
                     td
-                        h2(style={'font-family': "'Open Sans', 'Lucida Sans', Geneva, Verdana, sans-serif", color: 'rgb(255, 17, 95)'}) Get the app to join #{projectName}
-                            
+                        h2(style={'font-family': "'Open Sans', 'Lucida Sans', Geneva, Verdana, sans-serif", color: 'rgb(255, 17, 95)'}) Follow the link to start collaborating #{projectName}
                 tr
                     td
-                        table(width="100%")
-                            td(style={'width': '25%', 'text-align': 'center'})
-                                img(style={'height': '60px'} href="http://play.google.com/store/handball?pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png")
-                            td(style={'width': '25%', 'text-align': 'center'})
-                                img(style=('height': '60px') href="https://apps.apple.com/us/app/handball" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2012-11-18&kind=iossoftware&bubble=ios_apps) no-repeat;width:135px;height:40px;")
-                            td(style={'width': '25%', 'text-align': 'center'})
-                                a(href="https://www.handballapp.io/download") Windows
-                            td(style={'width': '25%', 'text-align': 'center'})
-                                a(href="https://www.handballapp.io/download") macOS
-                tr
-                    td
-                        p(style={'font-family': "'Open Sans', 'Lucida Sans', Geneva, Verdana, sans-serif", 'font-size': '12px'}) Google Play and the Google Play logo are trademarks of Google LLC. Apple® and App Store® are trademarks of Apple Inc., registered in the U.S. and other countries.
-    //- body
-    //-     div(class="container")
-    //-         div(class="title-container")
-    //-             h1 #{sourceDisplayName} has invited you to contribute to their project on Handball
-    //-             h2  Get the app to join #{projectName}
-
-    //-         div(class="badge-container")
-    //-             img(class="android-badge" href="http://play.google.com/store/handball?pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png")
-    //-             img(class="ios-badge" href="https://apps.apple.com/us/app/handball" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2012-11-18&kind=iossoftware&bubble=ios_apps) no-repeat;width:135px;height:40px;")
-    //-             a(href="https://www.handballapp.io/download") Download for Windows
-    //-             a(href="https://www.handballapp.io/download") Download for macOS
-
-    //-         div(class="legal")
-    //-             p Google Play and the Google Play logo are trademarks of Google LLC. Apple® and App Store® are trademarks of Apple Inc., registered in the U.S. and other countries.
-            
+                        h3 #{dynamicLink}
+                        
