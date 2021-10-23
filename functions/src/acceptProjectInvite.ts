@@ -21,9 +21,11 @@ const acceptProjectInvite = functions.https.onCall(async (data, context) => {
             message: 'User has been removed from the project, or the project has been deleted'
         }
     }
-
+    
+    // Update Member status.
     batch.update(memberRef, { status: 'added' });
 
+    // Set remoteId
     const remoteIdsRef = admin.firestore().collection(Paths.users).doc(userId).collection(Paths.projectIds).doc(projectId);
     batch.set(remoteIdsRef, { ...new ProjectIdModel(projectId) });
 

@@ -18,7 +18,6 @@ const linkAccountToProject = functions.https.onCall(async (data, context) => {
 
     // Pre Validate Linking Code
     if (preValidateLinkingCode(linkingCode) === false) {
-        console.log('Prevalidation Failed');
         return {
             status: 'error',
             message: 'Invalid linking code'
@@ -29,7 +28,6 @@ const linkAccountToProject = functions.https.onCall(async (data, context) => {
     const linkingCodeDoc: FirebaseFirestore.DocumentSnapshot = await fetchLinkingCodeDoc(linkingCode);
 
     if (linkingCodeDoc.exists === false || linkingCodeDoc.data() === undefined) {
-        console.log("Could not locate LinkingcodeDoc");
         return {
             status: 'error',
             message: 'Could not locate linkingCodeDoc'
@@ -40,27 +38,30 @@ const linkAccountToProject = functions.https.onCall(async (data, context) => {
     const projectId = docData.projectId;
 
     if (projectId === undefined || projectId === null) {
-        console.log("Could not Locate ProjectId in linkingCodeDoc");
         return {
             status: 'error',
             message: 'Could not locate projectId in linkingCodeDoc'
         }
     }
 
-    console.log('Linking Code validation Complete')
-
     // Validate Project.
     const isProjectValid = await validateProject(linkingCode, projectId);
 
     if (isProjectValid === false) {
-        console.log("Project no Longer Exists, or Invite was revoked.");
         return {
             status: 'error',
             message: 'Project no longer exists, or user invite was revoked'
         }
     }
 
-    console.log("Validation Complete");
+    // Check that the user isn't already invited to the Project.
+    const projectIdDoc = await admin.firestore().collection(Paths.users).doc(userId).collection(Paths.projectIds).doc(projectId).get();
+    if (projectIdDoc.exists) {
+        return {
+            status: 'error',
+            message: 'You are already a contributor to this project'
+        }
+    }
 
     // Swap the members in the Project Members collection. Do this first so that security rules don't block project accesss once 
     // they receive the projectId into their own collection.
@@ -154,8 +155,14 @@ const validateProject = async (linkingCode: string, projectId: string): Promise<
             }
         })
 
-        if (members.findIndex(item => item.userId === linkingCode) !== -1) {
-            stillAMember = true;
+        const index = members.findIndex(item => item.userId === linkingCode);
+        // Does a relavant Member doc still exist?
+        if (index !== -1) {
+            const member = members[index];
+            // Has that member doc been flagged as removed?
+            if (member.status !== MemberStatus.left && member.status !== MemberStatus.denied) {
+                stillAMember = true;
+            }
         }
     }
 

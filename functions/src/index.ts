@@ -7,12 +7,10 @@ import kickUserFromProject from './kickUserFromProject';
 import acceptProjectInvite from './acceptProjectInvite';
 import denyProjectInvite from './denyProjectInvite';
 import cleanupProjectDelete from './cleanupProjectDelete';
-import getRemoteUserData from './getRemoteUserData';
 import removeOrphanedTaskComments from './removeOrphanedTaskComments';
 import deleteUser from './deleteUser';
 import changeDisplayName from './changeDisplayName';
 import changeEmailAddress from './changeEmailAddress';
-import sendAppAndProjectInvite from './sendAppAndProjectInvite';
 import linkAccountToProject from './linkAccountToProject';
 import propagateProjectDeletedFlag from './propagateProjectDeletedFlag';
 
@@ -32,11 +30,9 @@ exports.propagateProjectDeletedFlag = propagateProjectDeletedFlag;
 
 // Callables
 exports.sendProjectInvite = sendProjectInvite;
-exports.sendAppAndProjectInvite = sendAppAndProjectInvite;
 exports.kickUserFromProject = kickUserFromProject;
 exports.acceptProjectInvite = acceptProjectInvite;
 exports.denyProjectInvite = denyProjectInvite;
-exports.getRemoteUserData = getRemoteUserData;
 exports.changeDisplayName = changeDisplayName;
 exports.changeEmailAddress = changeEmailAddress;
 exports.linkAccountToProject = linkAccountToProject;

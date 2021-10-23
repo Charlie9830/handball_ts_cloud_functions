@@ -30,3 +30,30 @@ const enum DynamicLinkType {
     invalid = "invalid",
     projectInvite = "projectInvite"
 }
+
+// Serialized by Index. Don't screw around with it.
+// Ensure changes here are propagated to Client side enum.
+const enum ActivityFeedEventType {
+    addTask,
+    deleteTask,
+    completeTask,
+    editTask,
+    moveTask,
+    unCompleteTask,
+    commentOnTask, // Not implemented. Has the potentional to greatly increase the ammount of Database Writes and Reads.
+    prioritizeTask,
+    unPrioritizeTask,
+    changeDueDate,
+    addDetails,
+    addList,
+    moveList,
+    deleteList,
+    renameList,
+    addMember,
+    removeMember, // Not implemented. Not sure how I feel about a user being removed from the Project being gazzeted in the Activity Feed.
+    addProject,
+    renameProject,
+    renewChecklist,
+    assignmentUpdate,
+    reColorList,
+}
